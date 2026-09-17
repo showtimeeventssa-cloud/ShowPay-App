@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07080b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+<title>ShowPay — Artist Desk</title>
+</head>
+<body>
+<div id="app">
+<header class="topbar">
+  <div class="brand">Show<span>Pay</span></div>
+  <button class="add" onclick="openDoc('invoice')">＋</button>
+</header>
+
+<main>
+<section id="home" class="screen active">
+  <div class="hero">
+    <div class="hero-photo"></div>
+    <div class="hero-copy">
+      <div class="eyebrow">ARTIST DESK</div>
+      <h1>Your music business.<br><i>All in one place.</i></h1>
+      <p>Shows, clients, quotes, invoices, income and your shared calendar.</p>
+    </div>
+  </div>
+
+  <div class="greeting">
+    <h2>Good afternoon, <b id="artistName">Artist</b>.</h2>
+    <p>Here’s what’s happening with your business.</p>
+  </div>
+
+  <div class="primary-actions">
+    <button class="outline" onclick="openDoc('quote')">＋ New Quote</button>
+    <button class="gold" onclick="openDoc('invoice')">＋ New Invoice</button>
+  </div>
+
+  <div class="stats">
+    <div><small>This month's income</small><strong id="income">R 0,00</strong><span>Paid income</span></div>
+    <div><small>Outstanding</small><strong id="outstanding">R 0,00</strong><span>Unpaid invoices</span></div>
+    <div><small>Upcoming shows</small><strong id="showsCount">0</strong><span>Bookings ahead</span></div>
+    <div><small>Active quotes</small><strong id="quotesCount">0</strong><span>Awaiting action</span></div>
+  </div>
+
+  <div class="section-title">Artist Desk</div>
+  <div class="module-grid">
+    <button onclick="go('shows')">🎵<b>Shows</b><small>Bookings & venues</small></button>
+    <button onclick="go('calendar')">📅<b>Calendar</b><small>Shared planning</small></button>
+    <button onclick="go('clients')">👥<b>Clients</b><small>Client database</small></button>
+    <button onclick="go('quotes')">📝<b>Quotes</b><small>Create & convert</small></button>
+    <button onclick="go('invoices')">🧾<b>Invoices</b><small>Get paid</small></button>
+    <button onclick="go('income')">💰<b>Income</b><small>Money received</small></button>
+    <button onclick="go('reports')">📊<b>Reports</b><small>Business overview</small></button>
+    <button onclick="go('marketing')">📱<b>Marketing</b><small>Plan campaigns</small></button>
+    <button onclick="go('contracts')">📄<b>Contracts</b><small>Booking agreements</small></button>
+    <button onclick="go('sync')">☁️<b>Sync</b><small>You + fiancé</small></button>
+  </div>
+</section>
+
+<section id="shows" class="screen"><div class="pagehead"><div><h2>Shows</h2><p>Your performances, venues and fees.</p></div><button class="gold small" onclick="addShow()">+ Add Show</button></div><div class="list panel" id="showsList"></div></section>
+<section id="calendar" class="screen"><div class="pagehead"><div><h2>Calendar</h2><p>TimeTree-style shared planning.</p></div><button class="gold small" onclick="addShow()">+ Event</button></div><div class="panel calendar"><div class="calbar"><button onclick="moveMonth(-1)">‹</button><b id="month"></b><button onclick="moveMonth(1)">›</button></div><div class="legend"><span>● You</span><span>● Fiancé</span><span>● Shared</span></div><div class="week"><b>Sun</b><b>Mon</b><b>Tue</b><b>Wed</b><b>Thu</b><b>Fri</b><b>Sat</b></div><div id="calgrid" class="calgrid"></div></div></section>
+<section id="clients" class="screen"><div class="pagehead"><div><h2>Clients</h2><p>Every client detail in one place.</p></div><button class="gold small" onclick="addClient()">+ Client</button></div><div class="list panel" id="clientsList"></div></section>
+<section id="quotes" class="screen"><div class="pagehead"><div><h2>Quotes</h2><p>Professional quotes with automatic numbering.</p></div><button class="gold small" onclick="openDoc('quote')">+ Quote</button></div><div class="list panel" id="quotesList"></div></section>
+<section id="invoices" class="screen"><div class="pagehead"><div><h2>Invoices</h2><p>Automatic numbers, PDF and payment tracking.</p></div><button class="gold small" onclick="openDoc('invoice')">+ Invoice</button></div><div class="list panel" id="invoicesList"></div></section>
+<section id="income" class="screen"><div class="pagehead"><div><h2>Income</h2><p>Actual paid income by payment date.</p></div></div><div class="stats three"><div><small>Paid this month</small><strong id="incPaid">R 0,00</strong></div><div><small>Outstanding</small><strong id="incDue">R 0,00</strong></div><div><small>Paid invoices</small><strong id="incCount">0</strong></div></div><div class="list panel" id="incomeList"></div></section>
+<section id="reports" class="screen"><div class="pagehead"><div><h2>Reports</h2><p>A clear view of your artist business.</p></div></div><div class="report panel"><small>PAID INCOME THIS MONTH</small><strong id="reportValue">R 0,00</strong><div class="chart"><i style="height:22%"></i><i style="height:35%"></i><i style="height:28%"></i><i style="height:51%"></i><i style="height:43%"></i><i style="height:66%"></i><i style="height:57%"></i><i style="height:82%"></i><i style="height:72%"></i><i style="height:94%"></i></div></div></section>
+<section id="marketing" class="screen"><div class="pagehead"><div><h2>Marketing</h2><p>Keep promotion alongside your shows.</p></div><button class="gold small" onclick="addMarketing()">+ Campaign</button></div><div class="cards" id="marketingList"></div></section>
+<section id="contracts" class="screen"><div class="pagehead"><div><h2>Contracts</h2><p>Keep agreements linked to bookings.</p></div><button class="gold small" onclick="addContract()">+ Contract</button></div><div class="cards" id="contractList"></div></section>
+<section id="sync" class="screen"><div class="pagehead"><div><h2>Shared Sync</h2><p>One workspace for you and your fiancé.</p></div></div><div class="sync panel"><div class="sync-art"></div><div class="sync-content"><div class="sync-icon">☁️</div><h3>Better together.</h3><p>Shows, calendar events, clients, quotes, invoices, payments, marketing and contracts can sync between both devices.</p><div class="sync-points"><span>✓ Two user accounts</span><span>✓ Shared TimeTree-style calendar</span><span>✓ Realtime updates</span><span>✓ Cloud backup</span></div><button class="gold" onclick="alert('Cloud sync is prepared. Connect the Supabase project using supabase-config.js and schema.sql.')">Connect Shared Workspace</button></div></div></section>
+<section id="settings" class="screen"><div class="pagehead"><div><h2>Settings</h2><p>Logo, artist details and banking information.</p></div></div><div class="panel form"><label>Artist / Business Name<input id="sName"></label><label>VAT Number<input id="sVat"></label><label>Email<input id="sEmail"></label><label>Phone<input id="sPhone"></label><label>Postal / Physical Address<textarea id="sAddress"></textarea></label><h3>Bank Details</h3><label>Account Holder<input id="sHolder"></label><label>Bank<input id="sBank"></label><label>Account Number<input id="sAccount"></label><label>Branch Code<input id="sBranch"></label><h3>Numbering</h3><label>Invoice Prefix<input id="sInvPrefix"></label><label>Quote Prefix<input id="sQuotePrefix"></label><button class="gold" onclick="saveSettings()">Save Settings</button></div></section>
+
+<section id="editor" class="screen"><div class="pagehead"><div><h2 id="editorTitle">New Invoice</h2><p>Professional A4 artist document.</p></div></div><div class="panel form">
+<div class="two"><label>Number<input id="dNumber" readonly></label><label>Reference<input id="dReference"></label><label>Client<select id="dClient"></select></label><label>Date<input id="dDate" type="date"></label><label>Due Date<input id="dDue" type="date"></label><label>Payment Terms<input id="dTerms" value="COD"></label><label>Date Of Event<input id="dEvent" type="date"></label><label>Salesperson<input id="dSales"></label><label>Job<input id="dJob"></label><label>VAT %<input id="dVat" type="number" value="0"></label></div>
+<h3>Line Items</h3><div class="linehead"><span>Qty</span><span>Description</span><span>Unit Price</span><span></span></div><div id="lines"></div><button class="outline" onclick="addLine()">＋ Add line</button>
+<div class="totals"><span>Subtotal <b id="sub">R 0,00</b></span><span>VAT <b id="vat">R 0,00</b></span><strong>Total <b id="total">R 0,00</b></strong></div>
+<label>Thank-you message<input id="dThanks" value="Thank you for your business!"></label>
+<div class="primary-actions"><button class="outline" onclick="go(activeList)">Cancel</button><button class="gold" onclick="saveDoc()">Save Document</button></div>
+</div></section>
+</main>
+
+<nav class="bottom">
+<button class="active" onclick="go('home')">⌂<small>Home</small></button><button onclick="go('shows')">🎵<small>Shows</small></button><button onclick="go('calendar')">📅<small>Calendar</small></button><button onclick="go('clients')">👥<small>Clients</small></button><button onclick="go('more')">•••<small>More</small></button>
+</nav>
+<div id="toast"></div>
+</div>
+<script>
+function PageHead(p){return `<div class="pagehead"><div><h2>${p.title}</h2><p>${p.sub||''}</p></div>${p.action?`<button class="gold small" onclick="${p.fn}()">${p.action}</button>`:''}</div>`}
+document.querySelectorAll('.pagehead').forEach(()=>{});
+</script>
+<script src="app.js"></script>
+</body>
+</html>
