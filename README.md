@@ -1,14 +1,18 @@
-# ShowPay — Artist Desk
+# ShowPay — Artist Desk v2
 
-A standalone GitHub Pages artist business app for shows, calendar, clients, quotes, invoices, income, reports, marketing and contracts.
+This version is the visual rebuild. The approved ShowPay mock-up artwork is included and used directly for the artist hero/background treatment.
 
-## Deploy
-Upload the contents of this folder to the repository root. Keep `index.html` at the repository root and keep the `assets` folder intact.
+## GitHub Pages
+Upload the contents to a GitHub repository and enable Pages. No build step is required.
 
-GitHub Pages can be configured either with **GitHub Actions** (the included workflow) or by publishing the `main` branch root.
+## Core features
+Shows, TimeTree-style calendar, clients, quotes, invoices, income, reports, marketing, contracts, automatic numbering, quote-to-invoice conversion, paid status, A4 PDF/print and WhatsApp/share.
 
-## Data
-The app stores data locally in the browser and includes JSON export/import for sharing backups. Supabase schema/config files are included for future cloud sync.
+## Shared sync
+`schema.sql` and `supabase-config.js` prepare the production cloud-sync layer for two authenticated users sharing one workspace. The current front-end remains local until Supabase is connected.
 
-## Important
-Do not put the project inside another nested folder in the repository.
+Do not put a service-role key in the browser.
+
+## Artwork
+`assets/showpay-master-artwork.jpg` is the complete generated mock-up artwork.
+`assets/showpay-artist-hero.jpg` is a direct crop from that artwork used behind the app hero.
