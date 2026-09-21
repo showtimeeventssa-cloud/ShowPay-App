@@ -1,0 +1,15 @@
+{
+  "name":"ShowPay Artist",
+  "short_name":"ShowPay",
+  "description":"Quotes, invoices, clients, payments and schedule for artists.",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "orientation":"any",
+  "background_color":"#050b11",
+  "theme_color":"#07111b",
+  "icons":[
+    {"src":"assets/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"assets/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}
