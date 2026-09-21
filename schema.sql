@@ -1,1 +1,0 @@
--- Optional future backend schema. LocalStorage is used by this standalone build.
